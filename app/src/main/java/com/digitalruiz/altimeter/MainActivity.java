@@ -22,8 +22,10 @@ public class MainActivity extends AppCompatActivity {
     private final String TAG = "GPS";
     private double mslAltitude;
     private double speed;
+    private double heading;
     private TextView altitudeText;
     private TextView speedText;
+    private TextView headingText;
     private Button getAltitudeButton;
     private LocationManager locationManager;
     private LocationListener locationListener;
@@ -39,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         altitudeText = findViewById(R.id.textViewAltitude);
         speedText = findViewById(R.id.textViewSpeed);
+        headingText = findViewById(R.id.textViewHeading);
         getAltitudeButton = findViewById(R.id.buttonGetAltitude);
 
         getAltitudeButton.setOnClickListener(new View.OnClickListener() {
@@ -131,12 +134,22 @@ public class MainActivity extends AppCompatActivity {
                     Log.v(TAG, "MSL Altitude " + mslAltitude);
                 }
             }
-            // Parse speed in KM per hour, Detailed descriptions of NMEA string here http://aprs.gids.nl/nmea/#vtg
+            // Parse speed in KM per hour nad heading (course) magnetic, Detailed descriptions of NMEA string here http://aprs.gids.nl/nmea/#vtg
             else if (type.startsWith("$GNVTG")){
-                if (!tokens[7].isEmpty()){
+                if (!tokens[7].isEmpty()) {
                     speed = Double.parseDouble(tokens[7]);
                     speedText.setText(Double.toString(speed));
                     Log.v(TAG, "Speed " + speed);
+                }
+                else {
+
+                }
+                if (!tokens[3].isEmpty()) {
+                    heading = Double.parseDouble(tokens[3]);
+                    headingText.setText(Double.toString(heading));
+                    Log.v(TAG, "Heading " + tokens[3]);
+                }
+                else {
 
                 }
             }
