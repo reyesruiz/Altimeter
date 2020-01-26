@@ -213,10 +213,10 @@ public class MainActivity extends AppCompatActivity {
                     Log.v(TAG, "Adjacent " + adjacent);
 
                     Double angle;
-                    if (mslAltitude > 0 && avgSpeedMeterPerHour != 0){
+                    if (opposite > 0 && adjacent == 0  ){
                         angle = 90d;
                     }
-                    else if (mslAltitude < 0 && avgSpeedMeterPerHour != 0) {
+                    else if (opposite < 0 && adjacent == 0) {
                         angle = -90d;
                     }
                     else {
