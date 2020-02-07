@@ -22,83 +22,88 @@
         android:id="@+id/textViewAltitude"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="100dp"
         android:text="Altitude"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/buttonGetAltitude"
+        android:textSize="24sp"
         app:layout_constraintEnd_toStartOf="@+id/textViewSpeed"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewAltitudeStatic" />
 
     <TextView
         android:id="@+id/textViewSpeed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="100dp"
         android:text="Speed"
-        app:layout_constraintBottom_toTopOf="@+id/buttonGetAltitude"
+        android:textSize="24sp"
         app:layout_constraintEnd_toStartOf="@+id/textViewHeading"
-        app:layout_constraintStart_toEndOf="@+id/textViewAltitude" />
+        app:layout_constraintStart_toEndOf="@+id/textViewAltitude"
+        app:layout_constraintTop_toBottomOf="@+id/textViewSpeedStatic" />
 
     <TextView
         android:id="@+id/textViewHeading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="100dp"
         android:text="Heading"
-        app:layout_constraintBottom_toTopOf="@+id/buttonGetAltitude"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="@id/textViewAngle"
         app:layout_constraintStart_toEndOf="@+id/textViewSpeed"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/textViewHeadingStatic" />
 
     <TextView
         android:id="@+id/textViewAngle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="100dp"
         android:text="Angle"
-        app:layout_constraintBottom_toTopOf="@+id/buttonGetAltitude"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textViewHeading"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/textViewAngleStatic" />
 
     <TextView
         android:id="@+id/textViewAltitudeStatic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
         android:text="Altitude:"
+        android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textViewAltitude"
         app:layout_constraintEnd_toStartOf="@+id/textViewSpeedStatic"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textViewSpeedStatic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
         android:text="Speed:"
+        android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textViewSpeed"
         app:layout_constraintEnd_toStartOf="@+id/textViewHeadingStatic"
-        app:layout_constraintStart_toEndOf="@+id/textViewAltitudeStatic" />
+        app:layout_constraintStart_toEndOf="@+id/textViewAltitudeStatic"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textViewHeadingStatic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
         android:text="Heading:"
+        android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textViewHeading"
         app:layout_constraintEnd_toEndOf="@id/textViewAngleStatic"
-        app:layout_constraintStart_toEndOf="@+id/textViewSpeedStatic" />
+        app:layout_constraintStart_toEndOf="@+id/textViewSpeedStatic"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textViewAngleStatic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
         android:text="Angle:"
+        android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textViewAngle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textViewHeadingStatic" />
+        app:layout_constraintStart_toEndOf="@+id/textViewHeadingStatic"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

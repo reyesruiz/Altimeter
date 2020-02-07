@@ -15,6 +15,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.location.OnNmeaMessageListener;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.util.Log;
@@ -196,7 +197,9 @@ public class MainActivity extends AppCompatActivity {
                     ArrayList entryTwoAltitude = (ArrayList) dataAltitude.get(1);
                     Double altitudeOne = (Double) entryOneAltitude.get(1);
                     Double altitudeTwo = (Double) entryTwoAltitude.get(1);
+
                     Double opposite = altitudeTwo - altitudeOne;
+
                     Log.v(TAG, "Opposite is " + opposite);
 
                     //calculate distance traveled (adjacent in triangle)
@@ -205,25 +208,36 @@ public class MainActivity extends AppCompatActivity {
                     ArrayList entryTwoSpeed = (ArrayList) dataSpeed.get(1);
                     Double speedOne = (Double) entryOneSpeed.get(1);
                     Double speedTwo = (Double) entryTwoSpeed.get(1);
+                    Log.v(TAG, "Speed One " + speedOne);
                     Double avgSpeedMeterPerHour = ((speedOne + speedTwo)/2) * 1000;
                     Long timeOne = (Long) entryOneSpeed.get(0);
                     Long timeTwo = (Long) entryTwoSpeed.get(0);
                     Double timeDifference = timeTwo.doubleValue() - timeOne.doubleValue();
-                    Double adjacent = (timeDifference * avgSpeedMeterPerHour)/3600000;
-                    Log.v(TAG, "Adjacent " + adjacent);
+                    Double hypotenuse = (timeDifference * avgSpeedMeterPerHour)/3600000;
+                    Log.v(TAG, "Hypotenuse " + hypotenuse);
 
-                    Double angle;
-                    if (opposite > 0 && adjacent == 0  ){
-                        angle = 90d;
+                    Double angle = 0d;
+                    if (opposite > 0d && hypotenuse == 0d  ){
+                        angle = 0d;
                     }
-                    else if (opposite < 0 && adjacent == 0) {
-                        angle = -90d;
+                    else if (opposite < 0d && hypotenuse == 0d) {
+                        angle = 0d;
                     }
                     else {
-                        angle = Math.atan2(opposite, adjacent);
+                        Double sin = opposite/hypotenuse;
+                        Log.v(TAG, "sin " + sin);
+                        Double angleRadians = Math.asin(sin);
+                        Double angleDegrees = angleRadians / Math.PI * 180;
+                        Log.v(TAG, "angleRadians " + angleRadians);
+                        Log.v(TAG, "angleDegrees " + angleDegrees);
+                        if (angleDegrees >= 0 || angleDegrees <= 0){
+                            angle = angleDegrees;
+                        }
+
                     }
                     Log.v(TAG, "angle " + angle);
                     String angleFormat = new DecimalFormat("#.##").format(angle);
+                    Log.v(TAG, "angle format " + angleFormat);
                     angleText.setText(angleFormat);
 
                 }
