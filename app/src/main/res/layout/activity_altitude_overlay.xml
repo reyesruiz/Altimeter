@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/altitude_head_root"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#00FF9800"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textViewAltitudeStatic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Altitude:"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textViewAltitude"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewAltitude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Altitude"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/textViewSpeedStatic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewAltitudeStatic" />
+
+    <TextView
+        android:id="@+id/textViewSpeedStatic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Speed:"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/textViewSpeed"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewAltitude" />
+
+    <TextView
+        android:id="@+id/textViewSpeed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Speed"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@id/textViewHeadingStatic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewSpeedStatic" />
+
+    <TextView
+        android:id="@+id/textViewHeadingStatic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Heading:"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/textViewHeading"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewSpeed" />
+
+    <TextView
+        android:id="@+id/textViewHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Heading"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@id/textViewAngleStatic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewHeadingStatic" />
+
+    <TextView
+        android:id="@+id/textViewAngleStatic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Angle:"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/textViewAngle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewHeading" />
+
+    <TextView
+        android:id="@+id/textViewAngle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Angle"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@id/close_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewAngleStatic" />
+
+
+    <!--Close button-->
+    <ImageView
+        android:id="@+id/close_btn"
+        android:layout_width="26dp"
+        android:layout_height="26dp"
+        android:src="@drawable/ic_close"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewAngle" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
