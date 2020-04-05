@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView speedText;
     private TextView headingText;
     private TextView angleText;
-    private Button getAltitudeButton;
+    private Button popUpButton;
     private LocationManager locationManager;
     private LocationListener locationListener;
     private GnssStatus.Callback statusCallBack;
@@ -56,6 +56,11 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList dataSpeed = new ArrayList();
 
 
+    @Override
+    protected void onPause(){
+        super.onPause();
+        Log.v(TAG, "PAUSE");
+    }
 
 
     @Override
@@ -63,48 +68,38 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         //Check if the application has draw over other apps permission or not?
         //This permission is by default available for API<23. But for API > 23
         //you have to ask for the permission in runtime.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(this)) {
+
             //If the draw over permission is not available open the settings screen
             //to grant the permission.
             Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
                     Uri.parse("package:" + getPackageName()));
             startActivityForResult(intent, CODE_DRAW_OVER_OTHER_APP_PERMISSION);
-        } else {
-         //   initializeView();
         }
+
+
+
+        //Need to put an else, and then ask for location permission.
 
         altitudeText = findViewById(R.id.textViewAltitude);
         speedText = findViewById(R.id.textViewSpeed);
         headingText = findViewById(R.id.textViewHeading);
         angleText = findViewById(R.id.textViewAngle);
-        getAltitudeButton = findViewById(R.id.buttonGetAltitude);
+        popUpButton = findViewById(R.id.buttonPopUp);
 
 
-        Log.v(TAG, "Size " + dataAltitude.size());
 
-
-        getAltitudeButton.setOnClickListener(new View.OnClickListener() {
+        popUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                altitudeText.setText("Getting altitude from GPS");
-                speedText.setText("Getting speed from GPS");
-                startService(new Intent(MainActivity.this, AltitudeService.class));
-             //   startService(new Intent(MainActivity.this, AltimiterInfo.class));
+                startService(new Intent(MainActivity.this, PopUpService.class));
                 finish();
             }
         });
-
-
-
-
-
-
-
-
-
 
         locationListener = new LocationListener() {
             @Override
@@ -157,15 +152,22 @@ public class MainActivity extends AppCompatActivity {
                 parseNmeaString(message);
             }
         };
+
+
         if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+            //good
+
+        } else {
+            //Should not happen, since we already asked for permissions on both activities.
         }
+
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
         locationManager.registerGnssStatusCallback(statusCallBack);
         locationManager.addNmeaListener(messageListener);
-    }
 
+
+    }
 
 
     private void parseNmeaString(String line) {
